@@ -1,12 +1,12 @@
+var helicopterIMG, helicopterSprite, packageSprite,packageIMG;
+var packageBody,ground;
+var box1,box2,box3;
+
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
-
-var helicopterIMG, helicopterSprite, packageSprite,packageIMG;
-var packageBody,ground;
-var box1,box2,box3;
 function preload()
 {
 	helicopterIMG=loadImage("helicopter.png")
@@ -14,18 +14,8 @@ function preload()
 }
 
 function setup() {
-	createCanvas(800, 700);
+	createCanvas(800 , 700);
 	rectMode(CENTER);
-	
-
-	boxSide1= createSprite(width/2,650,200,20,{isStatic:true, restitution: 0.3});
-	boxSide1.shapeColor=color("red")
-
-	boxSide2=createSprite(290,620,20,100,{isStatic:true, restitution: 0.3});
-	boxSide2.shapeColor=color("red")
-
-	boxSide3=createSprite(510,620,20,100,{isStatic:true, restitution: 0.3});
-	boxSide3.shapeColor=color("red")
 
 
 	packageSprite=createSprite(width/2, 80, 10,10);
@@ -40,18 +30,41 @@ function setup() {
 	groundSprite.shapeColor=color(255)
 
 
+
 	engine = Engine.create();
 	world = engine.world;
 
 	packageBody = Bodies.circle(width/2 , 200 , 5, {restitution:0.8});
 	Matter.Body.setStatic(packageBody, true);
 	World.add(world, packageBody);
-	
+
+
 
 	//Create a Ground
 	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
 	 World.add(world, ground);
 
+
+	 var box1_op={
+		isStatic: true
+	}
+	box1 = createSprite(400,650,200,20,box1_op);
+	box1.shapeColor="red";
+	World.add(world,box1);
+
+	var box2_op={
+		isStatic: true
+	}
+	box2 = createSprite(490,600,20,100,box2_op);
+	box2.shapeColor="red";
+	World.add(world,box2);
+
+	var box3_op={
+		isStatic: true
+	}
+	box3 = createSprite(310,600,20,100,box3_op);
+	box3.shapeColor="red";
+	World.add(world,box3);
 
 	Engine.run(engine);
   
@@ -61,7 +74,7 @@ function setup() {
 function draw() {
   rectMode(CENTER);
   background(0);
-  
+
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y 
   drawSprites();
@@ -72,9 +85,7 @@ function draw() {
 
 function keyPressed() {
  if (keyCode == DOWN_ARROW) {
-	 console.log("down")
 	Matter.Body.setStatic(packageBody, false);
-	   
 	
   }
 }
