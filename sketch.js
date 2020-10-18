@@ -34,11 +34,11 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 
-    var pk_op ={
+    var packagebody_options ={
       restruction: 0.5
 	}
 
-	packageBody = Bodies.circle(width/2 , 200 , 5,pk_op);
+	packageBody = Bodies.circle(width/2 , 200 , 5,packagebody_options);
 	Matter.Body.setStatic(packageBody, true);
 	World.add(world, packageBody);
 
@@ -80,15 +80,19 @@ function draw() {
   background(0);
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y 
+
+  rectMode(CENTER);
+  rect(box3.position.x,box3.position.y,20,100);
+  rect(box2.position.x,box2.position.y,20,100);
+  rect(box1.position.x,box1.position.y,200,20);
+
   drawSprites();
   keyPressed();
- 
- 
 }
 
 function keyPressed() {
  if (keyCode == DOWN_ARROW) {
 	Matter.Body.setStatic(packageBody, false);
-	
+
   }
 }
